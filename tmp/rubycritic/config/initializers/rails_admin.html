@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="../../overview.html" class="project-nav-item">Overview</a>
+          <a href="../../code_index.html" class="project-nav-item">Code</a>
+          <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="file-header group rated">
+  <span class="rating rating-a circled-text circle">
+    A
+  </span>
+  <h2 class="file-name">RailsAdmin</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-05 00:25:59 +0200'>2016-03-05 00:25:59 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      3 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      6 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">RailsAdmin.config do |config|
+  
+  config.authenticate_with do
+    warden.authenticate! scope: :user
+  end
+  config.current_user_method(&amp;:current_user)
+
+  config.authorize_with :cancan 
+  #TODO add cancancan to rails_admin config
+
+  config.model &#39;User&#39; do
+    edit do
+      configure :facebook_image do
+        visible do
+          #user = User.find(params[&#39;id&#39;])
+          #user.provider == &#39;facebook&#39;
+          true
+        end
+      end
+    end
+  end
+
+  config.model &#39;Book&#39; do
+    list do
+      field :title
+      field :price
+      field :in_stock
+      #field :rating
+      field :order_counter
+      field :best_seller
+      field :category
+      include_all_fields
+    end
+  end
+  #def get_params_id(original_url)
+  #  uri_string = URI::parse(uri)
+  #  id = uri_string.path.split(&#39;/&#39;)[3]
+  #end
+
+  #def original_url
+  #  base_url + original_fullpath
+  #end
+
+  ### Popular gems integration
+
+  ## == Devise ==
+  # config.authenticate_with do
+  #   warden.authenticate! scope: :user
+  # end
+  # config.current_user_method(&amp;:current_user)
+
+  ## == Cancan ==
+  # config.authorize_with :cancan
+
+  ## == Pundit ==
+  # config.authorize_with :pundit
+
+  ## == PaperTrail ==
+  # config.audit_with :paper_trail, &#39;User&#39;, &#39;PaperTrail::Version&#39; # PaperTrail &gt;= 3.0.0
+
+  ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
+
+  config.actions do
+    dashboard                     # mandatory
+    index                         # mandatory
+    new
+    export
+    bulk_delete
+    show
+    edit
+    delete
+    show_in_app
+
+    ## With an audit adapter, you can add:
+    # history_index
+    # history_show
+  end
+end
+</code>
+
+    </div>
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

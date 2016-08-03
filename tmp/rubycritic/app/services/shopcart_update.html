@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="../../overview.html" class="project-nav-item">Overview</a>
+          <a href="../../code_index.html" class="project-nav-item">Code</a>
+          <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="file-header group rated">
+  <span class="rating rating-a circled-text circle">
+    A
+  </span>
+  <h2 class="file-name">ShopcartUpdate</h2>
+
+  <span class="file-committed-at">
+    
+      Never committed
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      40 complexity
+    </div>
+    <div class="file-stat">
+      20.0 complexity per method
+    </div>
+    <div class="file-stat">
+      0 churn
+    </div>
+    <div class="file-stat">
+      2 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class ShopcartUpdate<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank">IrresponsibleModule</a>)      ShopcartUpdate has no descriptive comment          </span>  </li></ul>
+  def initialize(order, params)
+    @order = order
+    @params = params
+  end
+
+  def call<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flog/" target="_blank">HighComplexity</a>)      ShopcartUpdate#call has a flog score of 38          </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank">TooManyStatements</a>)      ShopcartUpdate#call has approx 8 statements          </span>  </li></ul>
+  	total_price = 0
+    quantity = 0
+    @params.try(:each) do |item|
+      if item.first != &#39;controller&#39; &amp;&amp; item.first != &#39;action&#39;<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ShopcartUpdate#call calls item.first 5 times                        <a href="shopcart_update.html#L11" class="js-smell-location">0</a>                  <a href="shopcart_update.html#L13" class="js-smell-location">1</a>                  <a href="shopcart_update.html#L14" class="js-smell-location">2</a>                  <a href="shopcart_update.html#L16" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank">FeatureEnvy</a>)      ShopcartUpdate#call refers to item more than self (maybe move it to another class?)                        <a href="shopcart_update.html#L11" class="js-smell-location">0</a>                  <a href="shopcart_update.html#L13" class="js-smell-location">1</a>                  <a href="shopcart_update.html#L14" class="js-smell-location">2</a>                  <a href="shopcart_update.html#L16" class="js-smell-location">3</a>                  <a href="shopcart_update.html#L17" class="js-smell-location">4</a>                  </span>  </li></ul>
+        @order.order_items
+              .find_by_book_id(item.first)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ShopcartUpdate#call calls item.first 5 times                        <a href="shopcart_update.html#L11" class="js-smell-location">0</a>                  <a href="shopcart_update.html#L13" class="js-smell-location">1</a>                  <a href="shopcart_update.html#L14" class="js-smell-location">2</a>                  <a href="shopcart_update.html#L16" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank">FeatureEnvy</a>)      ShopcartUpdate#call refers to item more than self (maybe move it to another class?)                        <a href="shopcart_update.html#L11" class="js-smell-location">0</a>                  <a href="shopcart_update.html#L13" class="js-smell-location">1</a>                  <a href="shopcart_update.html#L14" class="js-smell-location">2</a>                  <a href="shopcart_update.html#L16" class="js-smell-location">3</a>                  <a href="shopcart_update.html#L17" class="js-smell-location">4</a>                  </span>  </li></ul>
+              .update(book_id: item.first, quantity: item.second)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ShopcartUpdate#call calls item.first 5 times                        <a href="shopcart_update.html#L11" class="js-smell-location">0</a>                  <a href="shopcart_update.html#L13" class="js-smell-location">1</a>                  <a href="shopcart_update.html#L14" class="js-smell-location">2</a>                  <a href="shopcart_update.html#L16" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ShopcartUpdate#call calls item.second 3 times                        <a href="shopcart_update.html#L14" class="js-smell-location">0</a>                  <a href="shopcart_update.html#L16" class="js-smell-location">1</a>                  <a href="shopcart_update.html#L17" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank">FeatureEnvy</a>)      ShopcartUpdate#call refers to item more than self (maybe move it to another class?)                        <a href="shopcart_update.html#L11" class="js-smell-location">0</a>                  <a href="shopcart_update.html#L13" class="js-smell-location">1</a>                  <a href="shopcart_update.html#L14" class="js-smell-location">2</a>                  <a href="shopcart_update.html#L16" class="js-smell-location">3</a>                  <a href="shopcart_update.html#L17" class="js-smell-location">4</a>                  </span>  </li></ul>
+
+        total_price += Book.find_by_id(item.first).price * item.second.to_f<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ShopcartUpdate#call calls item.first 5 times                        <a href="shopcart_update.html#L11" class="js-smell-location">0</a>                  <a href="shopcart_update.html#L13" class="js-smell-location">1</a>                  <a href="shopcart_update.html#L14" class="js-smell-location">2</a>                  <a href="shopcart_update.html#L16" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ShopcartUpdate#call calls item.second 3 times                        <a href="shopcart_update.html#L14" class="js-smell-location">0</a>                  <a href="shopcart_update.html#L16" class="js-smell-location">1</a>                  <a href="shopcart_update.html#L17" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank">FeatureEnvy</a>)      ShopcartUpdate#call refers to item more than self (maybe move it to another class?)                        <a href="shopcart_update.html#L11" class="js-smell-location">0</a>                  <a href="shopcart_update.html#L13" class="js-smell-location">1</a>                  <a href="shopcart_update.html#L14" class="js-smell-location">2</a>                  <a href="shopcart_update.html#L16" class="js-smell-location">3</a>                  <a href="shopcart_update.html#L17" class="js-smell-location">4</a>                  </span>  </li></ul>
+        quantity += item.second.to_i<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ShopcartUpdate#call calls item.second 3 times                        <a href="shopcart_update.html#L14" class="js-smell-location">0</a>                  <a href="shopcart_update.html#L16" class="js-smell-location">1</a>                  <a href="shopcart_update.html#L17" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank">FeatureEnvy</a>)      ShopcartUpdate#call refers to item more than self (maybe move it to another class?)                        <a href="shopcart_update.html#L11" class="js-smell-location">0</a>                  <a href="shopcart_update.html#L13" class="js-smell-location">1</a>                  <a href="shopcart_update.html#L14" class="js-smell-location">2</a>                  <a href="shopcart_update.html#L16" class="js-smell-location">3</a>                  <a href="shopcart_update.html#L17" class="js-smell-location">4</a>                  </span>  </li></ul>
+      end
+    end
+    @order.update(total_price: total_price,
+                  book_count:  quantity,
+                  order_total: @order.delivery.to_f + total_price)
+    quantity
+  end
+
+  private
+end
+</code>
+
+    </div>
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

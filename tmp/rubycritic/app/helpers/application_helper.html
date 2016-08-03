@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="../../overview.html" class="project-nav-item">Overview</a>
+          <a href="../../code_index.html" class="project-nav-item">Code</a>
+          <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="file-header group rated">
+  <span class="rating rating-b circled-text circle">
+    B
+  </span>
+  <h2 class="file-name">ApplicationHelper</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-06-01 18:48:30 +0300'>2016-06-01 18:48:30 +0300</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      102 complexity
+    </div>
+    <div class="file-stat">
+      11.3 complexity per method
+    </div>
+    <div class="file-stat">
+      10 churn
+    </div>
+    <div class="file-stat">
+      9 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">module ApplicationHelper<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank">IrresponsibleModule</a>)      ApplicationHelper has no descriptive comment          </span>  </li></ul>
+  def cp(path, bool = false)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Boolean-Parameter.md" target="_blank">BooleanParameter</a>)      ApplicationHelper#cp has boolean parameter 'bool'          </span>  </li></ul>
+    if current_page?(path)
+      bool ? &#39;active&#39; : &#39;class=active&#39;<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md" target="_blank">ControlParameter</a>)      ApplicationHelper#cp is controlled by argument bool          </span>  </li></ul>
+    end
+  end
+
+  def wizard_link(path)
+    &#39;c_active&#39; if params[:id] == path<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md" target="_blank">ControlParameter</a>)      ApplicationHelper#wizard_link is controlled by argument path          </span>  </li></ul>
+  end
+
+  def not_active(step)
+    hash = { address: 0, delivery: 1, payment: 2, confirm: 3, complete: 4 }
+    if @order.step_number.to_i == hash[step]<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#not_active calls @order.step_number 2 times                        <a href="application_helper.html#L14" class="js-smell-location">0</a>                  <a href="application_helper.html#L16" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#not_active calls @order.step_number.to_i 2 times                        <a href="application_helper.html#L14" class="js-smell-location">0</a>                  <a href="application_helper.html#L16" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#not_active calls hash[step] 2 times                        <a href="application_helper.html#L14" class="js-smell-location">0</a>                  <a href="application_helper.html#L16" class="js-smell-location">1</a>                  </span>  </li></ul>
+
+    elsif @order.step_number.to_i &lt; hash[step]<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#not_active calls @order.step_number 2 times                        <a href="application_helper.html#L14" class="js-smell-location">0</a>                  <a href="application_helper.html#L16" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#not_active calls @order.step_number.to_i 2 times                        <a href="application_helper.html#L14" class="js-smell-location">0</a>                  <a href="application_helper.html#L16" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#not_active calls hash[step] 2 times                        <a href="application_helper.html#L14" class="js-smell-location">0</a>                  <a href="application_helper.html#L16" class="js-smell-location">1</a>                  </span>  </li></ul>
+      &#39;not-active&#39;
+    end
+  end
+
+  def checked(val)
+    @order_steps_form.order.delivery.to_f == val
+  end
+
+  def count_products<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank">TooManyStatements</a>)      ApplicationHelper#count_products has approx 6 statements          </span>  </li></ul>
+    if current_user
+      @count_products = session[:user_products_count]
+    else
+      @count_products = JSON.parse(cookies[:book_count])[&#39;book_count&#39;] if cookies[:book_count]<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#count_products calls cookies[:book_count] 2 times          </span>  </li></ul>
+    end
+
+    bool = @count_products &amp;&amp; @count_products.to_i &gt; 0<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#count_products calls @count_products.to_i 2 times                        <a href="application_helper.html#L32" class="js-smell-location">0</a>                  <a href="application_helper.html#L33" class="js-smell-location">1</a>                  </span>  </li></ul>
+    bool ? @count_products.to_i &gt;= 100 ? &#39;99+&#39; : @count_products : &#39;empty&#39;<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#count_products calls @count_products.to_i 2 times                        <a href="application_helper.html#L32" class="js-smell-location">0</a>                  <a href="application_helper.html#L33" class="js-smell-location">1</a>                  </span>  </li></ul>
+  end
+
+  def cupon(order_total)
+    if @order.cupon.nil?<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#cupon calls @order.cupon 4 times                        <a href="application_helper.html#L37" class="js-smell-location">0</a>                  <a href="application_helper.html#L39" class="js-smell-location">1</a>                  <a href="application_helper.html#L40" class="js-smell-location">2</a>                  <a href="application_helper.html#L45" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#cupon calls @order.cupon.nil? 2 times                        <a href="application_helper.html#L37" class="js-smell-location">0</a>                  <a href="application_helper.html#L39" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Nil-Check.md" target="_blank">NilCheck</a>)      ApplicationHelper#cupon performs a nil-check          </span>  </li></ul>
+      order_total
+    else @order.cupon.nil?<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#cupon calls @order.cupon 4 times                        <a href="application_helper.html#L37" class="js-smell-location">0</a>                  <a href="application_helper.html#L39" class="js-smell-location">1</a>                  <a href="application_helper.html#L40" class="js-smell-location">2</a>                  <a href="application_helper.html#L45" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#cupon calls @order.cupon.nil? 2 times                        <a href="application_helper.html#L37" class="js-smell-location">0</a>                  <a href="application_helper.html#L39" class="js-smell-location">1</a>                  </span>  </li></ul>
+         if @order.cupon.use == true<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#cupon calls @order.cupon 4 times                        <a href="application_helper.html#L37" class="js-smell-location">0</a>                  <a href="application_helper.html#L39" class="js-smell-location">1</a>                  <a href="application_helper.html#L40" class="js-smell-location">2</a>                  <a href="application_helper.html#L45" class="js-smell-location">3</a>                  </span>  </li></ul>
+           if defined?(step)
+             if step == :complete
+               order_total
+             else
+               order_total - @order.cupon.discount<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#cupon calls @order.cupon 4 times                        <a href="application_helper.html#L37" class="js-smell-location">0</a>                  <a href="application_helper.html#L39" class="js-smell-location">1</a>                  <a href="application_helper.html#L40" class="js-smell-location">2</a>                  <a href="application_helper.html#L45" class="js-smell-location">3</a>                  </span>  </li></ul>
+              end
+           else
+             order_total
+           end
+         end
+    end
+  end
+
+
+  def discount
+    @order.cupon ? cupon_discount(@order.cupon.discount.to_s) : &#39;&#39;<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#discount calls @order.cupon 2 times          </span>  </li></ul>
+  end
+
+  def cupon_discount(val)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank">UtilityFunction</a>)      ApplicationHelper#cupon_discount doesn't depend on instance state (maybe move it to another class?)          </span>  </li></ul>
+    &#39;(-$&lt;div id=&quot;cupon-value&quot;&gt;&#39; &lt;&lt; val &lt;&lt; &#39;&lt;/div&gt;)&lt;br&gt;&lt;br&gt;&#39;
+  end
+
+  def items_calc(book, type = false)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flog/" target="_blank">HighComplexity</a>)      ApplicationHelper#items_calc has a flog score of 33          </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Boolean-Parameter.md" target="_blank">BooleanParameter</a>)      ApplicationHelper#items_calc has boolean parameter 'type'          </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank">TooManyStatements</a>)      ApplicationHelper#items_calc has approx 9 statements          </span>  </li></ul>
+    val = 0
+    quantity = 0
+    if current_user
+      @obj.try(:each) do |item|
+        val = book.price * item.quantity if book.id == item.book_id<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls book.id 4 times                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L69" class="js-smell-location">1</a>                  <a href="application_helper.html#L72" class="js-smell-location">2</a>                  <a href="application_helper.html#L73" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls book.id == item.book_id 2 times                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L69" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls book.price 2 times                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L72" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls item.book_id 2 times                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L69" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls item.quantity 2 times                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L69" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank">FeatureEnvy</a>)      ApplicationHelper#items_calc refers to book more than self (maybe move it to another class?)                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L69" class="js-smell-location">1</a>                  <a href="application_helper.html#L72" class="js-smell-location">2</a>                  <a href="application_helper.html#L73" class="js-smell-location">3</a>                  </span>  </li></ul>
+        quantity = item.quantity if book.id == item.book_id<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls book.id 4 times                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L69" class="js-smell-location">1</a>                  <a href="application_helper.html#L72" class="js-smell-location">2</a>                  <a href="application_helper.html#L73" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls book.id == item.book_id 2 times                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L69" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls item.book_id 2 times                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L69" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls item.quantity 2 times                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L69" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank">FeatureEnvy</a>)      ApplicationHelper#items_calc refers to book more than self (maybe move it to another class?)                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L69" class="js-smell-location">1</a>                  <a href="application_helper.html#L72" class="js-smell-location">2</a>                  <a href="application_helper.html#L73" class="js-smell-location">3</a>                  </span>  </li></ul>
+      end
+    else
+      val = book.price * @obj[book.id.to_s].to_i<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls @obj[book.id.to_s] 2 times                        <a href="application_helper.html#L72" class="js-smell-location">0</a>                  <a href="application_helper.html#L73" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls book.id 4 times                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L69" class="js-smell-location">1</a>                  <a href="application_helper.html#L72" class="js-smell-location">2</a>                  <a href="application_helper.html#L73" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls book.id.to_s 2 times                        <a href="application_helper.html#L72" class="js-smell-location">0</a>                  <a href="application_helper.html#L73" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls book.price 2 times                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L72" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank">FeatureEnvy</a>)      ApplicationHelper#items_calc refers to book more than self (maybe move it to another class?)                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L69" class="js-smell-location">1</a>                  <a href="application_helper.html#L72" class="js-smell-location">2</a>                  <a href="application_helper.html#L73" class="js-smell-location">3</a>                  </span>  </li></ul>
+      quantity = @obj[book.id.to_s]<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls @obj[book.id.to_s] 2 times                        <a href="application_helper.html#L72" class="js-smell-location">0</a>                  <a href="application_helper.html#L73" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls book.id 4 times                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L69" class="js-smell-location">1</a>                  <a href="application_helper.html#L72" class="js-smell-location">2</a>                  <a href="application_helper.html#L73" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationHelper#items_calc calls book.id.to_s 2 times                        <a href="application_helper.html#L72" class="js-smell-location">0</a>                  <a href="application_helper.html#L73" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank">FeatureEnvy</a>)      ApplicationHelper#items_calc refers to book more than self (maybe move it to another class?)                        <a href="application_helper.html#L68" class="js-smell-location">0</a>                  <a href="application_helper.html#L69" class="js-smell-location">1</a>                  <a href="application_helper.html#L72" class="js-smell-location">2</a>                  <a href="application_helper.html#L73" class="js-smell-location">3</a>                  </span>  </li></ul>
+    end
+    type ? quantity : number_to_currency(val)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md" target="_blank">ControlParameter</a>)      ApplicationHelper#items_calc is controlled by argument type          </span>  </li></ul>
+  end
+
+end
+</code>
+
+    </div>
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

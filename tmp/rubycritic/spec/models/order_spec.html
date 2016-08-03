@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="../../overview.html" class="project-nav-item">Overview</a>
+          <a href="../../code_index.html" class="project-nav-item">Code</a>
+          <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="file-header group rated">
+  <span class="rating rating-b circled-text circle">
+    B
+  </span>
+  <h2 class="file-name">OrderSpec</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-05-04 15:47:58 +0300'>2016-05-04 15:47:58 +0300</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      105 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      3 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">require &#39;rails_helper&#39;
+
+RSpec.describe Order, type: :model do
+
+  before(:all) do
+    @user = FactoryGirl.create :user
+  end
+
+  let(:create_orders) { 
+    FactoryGirl.create_list :order, 2, state: &#39;in_delivery&#39;, user_id: @user.id
+    FactoryGirl.create_list :order, 3, state: &#39;delivered&#39;, user_id: @user.id
+    FactoryGirl.create_list :order, 2, state: &#39;in_queue&#39;, user_id: @user.id
+    @last_order_queue = FactoryGirl.create :order, state: &#39;in_queue&#39;, user_id: @user.id
+  }
+  
+  it { should validate_presence_of(:total_price) }
+  it { should validate_presence_of(:state) }
+  it { should have_many (:order_items) }
+  it { should belong_to (:user) }
+  it { should belong_to (:credit_card) }
+  it { should have_one (:billing_address) }
+  it { should have_one (:shipping_address) }
+  it { should have_one (:cupon) }
+
+  it &quot;should set completed date when validated&quot; do
+    order = FactoryGirl.create :order
+    order.valid?
+    expect(order.completed_date).to eq 3.days.from_now.strftime(&quot;%a, %d %b %Y&quot;).to_date
+  end
+
+  it &quot;By default an order should have &#39;in progress&#39; state&quot; do
+  	order = FactoryGirl.create :order
+  	expect(order.state).to eq(&#39;in_progress&#39;)
+  end
+
+  it &quot;should than method create_order creating order record&quot; do
+    order = Order.create_order(&#39;0&#39;, 0, @user.id)
+    expect(@user.orders.first.id).to eq(order)
+  end
+
+  it &quot;returns last order which state = in_queue&quot; do
+    create_orders
+    expect(Order.last_order_queue(@user)).to eq @last_order_queue
+  end
+
+  it &quot;return all order which state = in_queue&quot; do
+    create_orders
+    expect(Order.in_queue(@user).count).to eq(3)
+  end
+
+  it &quot;return all order which state = in_delivery&quot; do
+    create_orders
+    expect(Order.in_delivery(@user).count).to eq(2)
+  end
+
+  it &quot;return all order which state = delivered&quot; do
+    create_orders
+    expect(Order.delivered(@user).count).to eq(3)
+  end
+
+end
+</code>
+
+    </div>
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

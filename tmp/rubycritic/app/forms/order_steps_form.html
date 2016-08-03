@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="../../overview.html" class="project-nav-item">Overview</a>
+          <a href="../../code_index.html" class="project-nav-item">Code</a>
+          <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="file-header group rated">
+  <span class="rating rating-d circled-text circle">
+    D
+  </span>
+  <h2 class="file-name">OrderStepsForm</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-06-01 18:48:30 +0300'>2016-06-01 18:48:30 +0300</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      199 complexity
+    </div>
+    <div class="file-stat">
+      11.1 complexity per method
+    </div>
+    <div class="file-stat">
+      4 churn
+    </div>
+    <div class="file-stat">
+      18 methods
+    </div>
+    <div class="file-stat">
+      53 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class OrderStepsForm<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank">IrresponsibleModule</a>)      OrderStepsForm has no descriptive comment          </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Prima-Donna-Method.md" target="_blank">PrimaDonnaMethod</a>)      OrderStepsForm has prima donna method `persist!`          </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Methods.md" target="_blank">TooManyMethods</a>)      OrderStepsForm has at least 18 methods          </span>  </li></ul>
+  include Virtus
+
+  extend ActiveModel::Naming
+  include ActiveModel::Model
+
+  attribute :step
+  attribute :atributes
+  attribute :and_shipping
+  attribute :order
+  attribute :name, String
+  attribute :company_name, String
+  attribute :email, String
+  attribute :current_step
+  attribute :valid
+  attribute :user
+  attribute :last_order
+
+  STEP_TYPE = { :address =&gt; 1, :delivery =&gt; 2, :payment =&gt; 3, :confirm =&gt; 4, :complete =&gt; 5 }
+
+  def initialize(order)
+    self.order = order
+  end
+
+  # Forms are never themselves persisted
+  def persisted?
+    false
+  end
+
+  def save
+    persist!
+    if valid
+      update_step
+      true
+    else
+      false
+    end
+  end
+
+  def order_items
+    order.order_items
+  end
+
+  def credit_card
+    payment
+  end
+
+  def payment
+    if order.credit_card<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#payment calls order.credit_card 2 times                        <a href="order_steps_form.html#L49" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L50" class="js-smell-location">1</a>                  </span>  </li></ul>
+      order.credit_card<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#payment calls order.credit_card 2 times                        <a href="order_steps_form.html#L49" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L50" class="js-smell-location">1</a>                  </span>  </li></ul>
+    else
+      credit_card = CreditCard.new(user_id: @order.user_id)
+      order.update(credit_card_id: credit_card.id)
+      credit_card
+    end
+  end
+
+  def billing_address<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Similar code found in 2 nodes                        <a href="order_steps_form.html#L58" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L63" class="js-smell-location">1</a>                  </span>  </li></ul>
+    order.billing_address || user.billing_address  || Address.new(order_billing_address_id: order.id)
+    billing_shipping_adresses(:billing_address)
+  end
+
+  def shipping_address<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Similar code found in 2 nodes                        <a href="order_steps_form.html#L58" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L63" class="js-smell-location">1</a>                  </span>  </li></ul>
+    order.shipping_address || user.shipping_address  || Address.new(order_shipping_address_id: order.id)
+    billing_shipping_adresses(:shipping_address)
+  end
+
+  def billing_shipping_adresses(address)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Identical code found in 2 nodes                        <a href="../controllers/addresses_controller.html#L30" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L68" class="js-smell-location">1</a>                  </span>  </li></ul>
+    order.public_send(address) || user.public_send(address) || Address.new(&quot;order_#{address.to_s}_id&quot;.to_sym =&gt; order.id)
+  end
+
+  def delivery
+    order.delivery
+  end
+
+  def month
+    order.credit_card.expiration_month
+  end
+
+  def year
+    order.credit_card.expiration_year
+  end
+
+  private
+
+  def step_address?
+    step.to_s == &#39;address&#39;
+  end
+
+  def step_payment?
+    step.to_s == &#39;payment&#39;
+  end
+
+  def update_step
+    order.update(step_number: STEP_TYPE[step])
+  end
+
+  def persist!<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flog/" target="_blank">VeryHighComplexity</a>)      OrderStepsForm#persist! has a flog score of 103          </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank">TooManyStatements</a>)      OrderStepsForm#persist! has approx 15 statements          </span>  </li></ul>
+    self.valid = true
+    case step
+    when :address
+      if and_shipping == &#39;true&#39;
+        if order.billing_address &amp;&amp; order.shipping_address<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls order.billing_address 3 times                        <a href="order_steps_form.html#L103" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L109" class="js-smell-location">1</a>                  <a href="order_steps_form.html#L131" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls order.shipping_address 2 times                        <a href="order_steps_form.html#L103" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L131" class="js-smell-location">1</a>                  </span>  </li></ul>
+          addresses_update
+        else
+          addresses_create
+        end
+      else
+        if order.billing_address<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls order.billing_address 3 times                        <a href="order_steps_form.html#L103" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L109" class="js-smell-location">1</a>                  <a href="order_steps_form.html#L131" class="js-smell-location">2</a>                  </span>  </li></ul>
+          addresses_update
+        else
+          addresses_create
+        end
+      end
+
+      #shipping = order.shipping_address
+      #billing= order.billing_address
+
+
+      #if shipping &amp;&amp; and_shipping == &#39;true&#39;
+        #shipping ? addresses_update : addresses_create
+      #else
+       #billing ? addresses_update : addresses_create
+      #end
+
+      #billing &amp;&amp; and_shipping ? create_update(shipping) : create_update(shipping)
+
+
+
+
+      self.valid = false if order.billing_address.errors.any? || order.shipping_address.errors.any?<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls order.billing_address 3 times                        <a href="order_steps_form.html#L103" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L109" class="js-smell-location">1</a>                  <a href="order_steps_form.html#L131" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls order.shipping_address 2 times                        <a href="order_steps_form.html#L103" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L131" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls self.valid = false 2 times                        <a href="order_steps_form.html#L131" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L141" class="js-smell-location">1</a>                  </span>  </li></ul>
+    when :delivery
+      order.update(delivery: atributes[:delivery_type][:delivery].to_f,<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls atributes[:delivery_type] 2 times                        <a href="order_steps_form.html#L133" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L134" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls atributes[:delivery_type][:delivery] 2 times                        <a href="order_steps_form.html#L133" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L134" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls atributes[:delivery_type][:delivery].to_f 2 times                        <a href="order_steps_form.html#L133" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L134" class="js-smell-location">1</a>                  </span>  </li></ul>
+                   order_total: order.total_price.to_f + atributes[:delivery_type][:delivery].to_f)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls atributes[:delivery_type] 2 times                        <a href="order_steps_form.html#L133" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L134" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls atributes[:delivery_type][:delivery] 2 times                        <a href="order_steps_form.html#L133" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L134" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls atributes[:delivery_type][:delivery].to_f 2 times                        <a href="order_steps_form.html#L133" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L134" class="js-smell-location">1</a>                  </span>  </li></ul>
+    when :payment
+      if order.credit_card<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls order.credit_card 3 times                        <a href="order_steps_form.html#L136" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L137" class="js-smell-location">1</a>                  <a href="order_steps_form.html#L141" class="js-smell-location">2</a>                  </span>  </li></ul>
+        order.credit_card.update(atributes[:payment])<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls atributes[:payment] 2 times                        <a href="order_steps_form.html#L137" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L139" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls order.credit_card 3 times                        <a href="order_steps_form.html#L136" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L137" class="js-smell-location">1</a>                  <a href="order_steps_form.html#L141" class="js-smell-location">2</a>                  </span>  </li></ul>
+      else
+        order.create_credit_card(atributes[:payment])<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls atributes[:payment] 2 times                        <a href="order_steps_form.html#L137" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L139" class="js-smell-location">1</a>                  </span>  </li></ul>
+      end
+      self.valid = false if order.credit_card.errors.any?<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls order.credit_card 3 times                        <a href="order_steps_form.html#L136" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L137" class="js-smell-location">1</a>                  <a href="order_steps_form.html#L141" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#persist! calls self.valid = false 2 times                        <a href="order_steps_form.html#L131" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L141" class="js-smell-location">1</a>                  </span>  </li></ul>
+    when :confirm
+      if @order.cupon
+        order.update(order_total: order.order_total.to_f - order.cupon.discount)
+      end
+      order.to_in_queue!
+      # @order_items = OrderItem.new()
+      @cookies_book = { &#39;book_count&#39; =&gt; &#39;0&#39;, &#39;total_price&#39; =&gt; &#39;0&#39; }
+      order_id = Order.create_order(@cookies_book, 0, user.id)
+      OrderItem.create_items(@cookies_book, order_id)
+    end
+  end
+
+  def addresses_create
+    order.create_billing_address(atributes[:billing_address])<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#addresses_create calls atributes[:billing_address] 2 times                        <a href="order_steps_form.html#L155" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L156" class="js-smell-location">1</a>                  </span>  </li></ul>
+    order.create_shipping_address(atributes[:billing_address])<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrderStepsForm#addresses_create calls atributes[:billing_address] 2 times                        <a href="order_steps_form.html#L155" class="js-smell-location">0</a>                  <a href="order_steps_form.html#L156" class="js-smell-location">1</a>                  </span>  </li></ul>
+  end
+
+  def addresses_update
+    order.billing_address.update(atributes[:billing_address])
+    order.shipping_address.update(atributes[:shipping_address])
+  end
+
+end
+</code>
+
+    </div>
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="../overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="../overview.html" class="project-nav-item">Overview</a>
+          <a href="../code_index.html" class="project-nav-item">Code</a>
+          <a href="../smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="file-header group rated">
+  <span class="rating rating-a circled-text circle">
+    A
+  </span>
+  <h2 class="file-name">Routes</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-06-01 18:48:30 +0300'>2016-06-01 18:48:30 +0300</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      27 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      16 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">Rails.application.routes.draw do
+
+  get &quot;/users/edit&quot; =&gt; &quot;users#settings&quot;
+  
+
+  devise_for :users, skip: [:session, :password, :registration, :confirmation], :controllers =&gt; {
+    omniauth_callbacks: &quot;users/omniauth_callbacks&quot;
+  }
+
+  mount RailsAdmin::Engine =&gt; &#39;/admin&#39;, as: &#39;rails_admin&#39;
+
+  scope &quot;/:locale&quot; do
+
+    devise_for :users, skip: :omniauth_callbacks, :controllers =&gt; {:registrations =&gt; &quot;users/registrations&quot;,
+                                                                   :sessions      =&gt; &quot;users/sessions&quot; }
+
+    resources :books
+    resources :categories
+    resources :orders
+    resources :order_items
+    resources :order_steps
+    resources :addresses
+    resources :users
+
+    root &#39;books#home&#39;
+    get  &#39;/settings&#39;,    to: &#39;users#settings&#39;
+    get  &#39;/shop/search&#39;, to: &#39;books#search&#39;
+    get  &#39;/clear_shopcart&#39;, to: &#39;orders#clear_cookies_shopcart&#39;
+  end
+
+  root to: redirect(&quot;/#{I18n.default_locale}&quot;, status: 302), as: :redirected_root
+
+  get &quot;/*path&quot;, to: redirect(&quot;/#{I18n.default_locale}/%{path}&quot;, status: 302), constraints: {path: /(?!(#{I18n.available_locales.join(&quot;|&quot;)})\/).*/}, format: false
+
+  resources :books, only: [:index, :show], path: &#39;/shop&#39;
+  resources :categories, only: [:show], path: &#39;/shop/category/&#39;
+  resources :ratings, only: [:index, :create], path: &#39;/rating&#39;
+
+  scope :orders do 
+    put    &#39;/update_shopcart_ajax&#39;, to: &#39;orders#update_shopcart_ajax&#39;
+    post    &#39;/check_cupon_ajax&#39;, to: &#39;orders#check_cupon_ajax&#39;
+    #get    &#39;/delete_products&#39;, to: &#39;orders#delete_products&#39;
+  end
+  resources :orders
+
+  #scope :orders_items do 
+    #delete &#39;/delete_item/:id&#39;,    to: &#39;orders_items#delete_cookie_item&#39;
+  #end
+  resources :order_items
+
+  devise_scope :user do
+    get    &#39;/settings&#39;, to: &#39;users#settings&#39;
+  end
+
+  resources :order_steps
+  resources :addresses, only: [:update]
+  resources :users, only: [:settings, :update_data] do
+    patch  &#39;/update_data&#39;, to: &#39;users#update_data&#39;
+    patch  &#39;/update_password&#39;, to: &#39;users#update_password&#39;
+  end
+
+  # The priority is based upon order of creation: first created -&gt; highest priority.
+  # See how all your routes lay out with &quot;rake routes&quot;.
+
+  # You can have the root of your site routed with &quot;root&quot;
+  # root &#39;welcome#index&#39;
+
+  # Example of regular route:
+  #   get &#39;products/:id&#39; =&gt; &#39;catalog#view&#39;
+
+  # Example of named route that can be invoked with purchase_url(id: product.id)
+  #   get &#39;products/:id/purchase&#39; =&gt; &#39;catalog#purchase&#39;, as: :purchase
+
+  # Example resource route (maps HTTP verbs to controller actions automatically):
+  #   resources :products
+
+  # Example resource route with options:
+  #   resources :products do
+  #     member do
+  #       get &#39;short&#39;
+  #       post &#39;toggle&#39;
+  #     end
+  #
+  #     collection do
+  #       get &#39;sold&#39;
+  #     end
+  #   end
+
+  # Example resource route with sub-resources:
+  #   resources :products do
+  #     resources :comments, :sales
+  #     resource :seller
+  #   end
+
+  # Example resource route with more complex sub-resources:
+  #   resources :products do
+  #     resources :comments
+  #     resources :sales do
+  #       get &#39;recent&#39;, on: :collection
+  #     end
+  #   end
+
+  # Example resource route with concerns:
+  #   concern :toggleable do
+  #     post &#39;toggle&#39;
+  #   end
+  #   resources :posts, concerns: :toggleable
+  #   resources :photos, concerns: :toggleable
+
+  # Example resource route within a namespace:
+  #   namespace :admin do
+  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # (app/controllers/admin/products_controller.rb)
+  #     resources :products
+  #   end
+end
+</code>
+
+    </div>
+    <script src='../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../assets/javascripts/application.js'></script>
+  </body>
+</html>

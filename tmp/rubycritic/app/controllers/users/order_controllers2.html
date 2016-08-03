@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="../../../overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="../../../overview.html" class="project-nav-item">Overview</a>
+          <a href="../../../code_index.html" class="project-nav-item">Code</a>
+          <a href="../../../smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="file-header group rated">
+  <span class="rating rating-f circled-text circle">
+    F
+  </span>
+  <h2 class="file-name">OrdersController</h2>
+
+  <span class="file-committed-at">
+    
+      Never committed
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      163 complexity
+    </div>
+    <div class="file-stat">
+      14.8 complexity per method
+    </div>
+    <div class="file-stat">
+      0 churn
+    </div>
+    <div class="file-stat">
+      11 methods
+    </div>
+    <div class="file-stat">
+      219 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class OrdersController &lt; ApplicationController<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank">IrresponsibleModule</a>)      OrdersController has no descriptive comment          </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Instance-Variables.md" target="_blank">TooManyInstanceVariables</a>)      OrdersController has at least 10 instance variables          </span>  </li></ul>
+  # Management cart on cookies or database order
+  def new<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Identical code found in 2 nodes                        <a href="../orders_controller.html#L3" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L3" class="js-smell-location">1</a>                  </span>  </li></ul>
+    if current_user
+      get_books_in_order
+    else
+      @cookies_book = JSON.parse(cookies[:books]) if cookies[:books]<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#new calls cookies[:books] 2 times          </span>  </li></ul>
+      get_books_in_order_not_auth(@cookies_book)
+    end
+  end
+
+  def clear_cookies_shopcart
+    cookies.delete :books
+    redirect_to books_path
+  end
+
+  def update<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flog/" target="_blank">HighComplexity</a>)      OrdersController#update has a flog score of 43          </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank">TooManyStatements</a>)      OrdersController#update has approx 7 statements          </span>  </li></ul>
+    @order_items = @order.order_items.find_by_book_id(params[:book_id]) || @order.order_items.new(book_id: params[:book_id])<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Identical code found in 2 nodes                        <a href="../orders_controller.html#L19" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L18" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update calls @order.order_items 3 times                        <a href="order_controllers2.html#L18" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L24" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update calls params[:book_id] 2 times          </span>  </li></ul>
+
+    session[:user_products_count] = session[:user_products_count].to_i + @order_items[:quantity].to_i<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update calls @order_items[:quantity] 2 times                        <a href="order_controllers2.html#L20" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L26" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update calls @order_items[:quantity].to_i 2 times                        <a href="order_controllers2.html#L20" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L26" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update calls session[:user_products_count] 2 times                        <a href="order_controllers2.html#L20" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L21" class="js-smell-location">1</a>                  </span>  </li></ul>
+    @order.update_order(@order, session[:user_products_count], price)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update calls session[:user_products_count] 2 times                        <a href="order_controllers2.html#L20" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L21" class="js-smell-location">1</a>                  </span>  </li></ul>
+
+    if @order_items.nil?<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Identical code found in 2 nodes                        <a href="../orders_controller.html#L29" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L23" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Nil-Check.md" target="_blank">NilCheck</a>)      OrdersController#update performs a nil-check          </span>  </li></ul>
+      @order.order_items.create(order_params)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update calls @order.order_items 3 times                        <a href="order_controllers2.html#L18" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L24" class="js-smell-location">1</a>                  </span>  </li></ul>
+    else
+      params[:quantity] = params[:quantity].to_i + @order_items[:quantity].to_i<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update calls @order_items[:quantity] 2 times                        <a href="order_controllers2.html#L20" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L26" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update calls @order_items[:quantity].to_i 2 times                        <a href="order_controllers2.html#L20" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L26" class="js-smell-location">1</a>                  </span>  </li></ul>
+      @order_items.update(order_params)
+    end
+
+    render nothing: true
+  end
+
+  def price
+    Book.find_by_id(order_params[:book_id]).price.to_f * order_params[:quantity].to_i
+  end
+
+  def update_shopcart_ajax<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Identical code found in 2 nodes                        <a href="../orders_controller.html#L39" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L37" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flog/" target="_blank">HighComplexity</a>)      OrdersController#update_shopcart_ajax has a flog score of 41          </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank">TooManyStatements</a>)      OrdersController#update_shopcart_ajax has approx 9 statements          </span>  </li></ul>
+    total_price = 0
+    quantity = 0
+    params.try(:each) do |item|
+      if item.first != &#39;controller&#39; &amp;&amp; item.first != &#39;action&#39;<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update_shopcart_ajax calls item.first 5 times                        <a href="order_controllers2.html#L41" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L42" class="js-smell-location">1</a>                  <a href="order_controllers2.html#L43" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank">FeatureEnvy</a>)      OrdersController#update_shopcart_ajax refers to item more than self (maybe move it to another class?)                        <a href="order_controllers2.html#L41" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L42" class="js-smell-location">1</a>                  <a href="order_controllers2.html#L43" class="js-smell-location">2</a>                  <a href="order_controllers2.html#L44" class="js-smell-location">3</a>                  </span>  </li></ul>
+        @order.order_items.find_by_book_id(item.first).update(book_id: item.first, quantity: item.second)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update_shopcart_ajax calls item.first 5 times                        <a href="order_controllers2.html#L41" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L42" class="js-smell-location">1</a>                  <a href="order_controllers2.html#L43" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update_shopcart_ajax calls item.second 3 times                        <a href="order_controllers2.html#L42" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L43" class="js-smell-location">1</a>                  <a href="order_controllers2.html#L44" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank">FeatureEnvy</a>)      OrdersController#update_shopcart_ajax refers to item more than self (maybe move it to another class?)                        <a href="order_controllers2.html#L41" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L42" class="js-smell-location">1</a>                  <a href="order_controllers2.html#L43" class="js-smell-location">2</a>                  <a href="order_controllers2.html#L44" class="js-smell-location">3</a>                  </span>  </li></ul>
+        total_price += Book.find_by_id(item.first).price * item.second.to_f<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update_shopcart_ajax calls item.first 5 times                        <a href="order_controllers2.html#L41" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L42" class="js-smell-location">1</a>                  <a href="order_controllers2.html#L43" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update_shopcart_ajax calls item.second 3 times                        <a href="order_controllers2.html#L42" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L43" class="js-smell-location">1</a>                  <a href="order_controllers2.html#L44" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank">FeatureEnvy</a>)      OrdersController#update_shopcart_ajax refers to item more than self (maybe move it to another class?)                        <a href="order_controllers2.html#L41" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L42" class="js-smell-location">1</a>                  <a href="order_controllers2.html#L43" class="js-smell-location">2</a>                  <a href="order_controllers2.html#L44" class="js-smell-location">3</a>                  </span>  </li></ul>
+        quantity += item.second.to_i<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#update_shopcart_ajax calls item.second 3 times                        <a href="order_controllers2.html#L42" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L43" class="js-smell-location">1</a>                  <a href="order_controllers2.html#L44" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank">FeatureEnvy</a>)      OrdersController#update_shopcart_ajax refers to item more than self (maybe move it to another class?)                        <a href="order_controllers2.html#L41" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L42" class="js-smell-location">1</a>                  <a href="order_controllers2.html#L43" class="js-smell-location">2</a>                  <a href="order_controllers2.html#L44" class="js-smell-location">3</a>                  </span>  </li></ul>
+      end
+    end
+    @order.update(total_price: total_price,
+                  book_count: quantity,
+                  order_total: @order.delivery.to_f + total_price)
+    session[:user_products_count] = quantity
+    render nothing: true
+  end
+
+  def check_cupon_ajax<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Identical code found in 2 nodes                        <a href="../orders_controller.html#L59" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L54" class="js-smell-location">1</a>                  </span>  </li></ul>
+    checking = Cupon.cheking(params[:value])
+    if checking
+      if checking.use
+        render text: &#39;This code has been used&#39;
+      else
+        render text: &#39;Your discount is $&#39; &lt;&lt; checking.discount.to_s &lt;&lt; &#39;. Continue?&#39;
+      end
+    else
+      render text: &#39;This code is not found&#39;
+    end
+  end
+
+  def show
+    @order = Order.find_by_id(params[:id])
+  end
+
+  def index
+    get_books_in_order
+    @in_queue    = Order.in_queue(current_user)
+    @in_delivery = Order.in_delivery(current_user)
+    @delivered   = Order.delivered(current_user)
+  end
+
+  def destroy<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Identical code found in 2 nodes                        <a href="../orders_controller.html#L83" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L78" class="js-smell-location">1</a>                  </span>  </li></ul>
+    @order.order_items.destroy_all
+    @order.update(total_price: 0.0, book_count: 0, order_total: 0.0)
+    cookies.delete :user_products_count
+    session[:user_products_count] = &#39;empty&#39;
+    redirect_to books_path
+  end
+
+  private
+
+  def order_params
+    params.permit(:book_id, :quantity, :value, :id)
+  end
+
+  def get_books_in_order<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Identical code found in 2 nodes                        <a href="../orders_controller.html#L97" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L92" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank">TooManyStatements</a>)      OrdersController#get_books_in_order has approx 7 statements          </span>  </li></ul>
+    # byebug
+    @ids = []
+    @cookies_hash = {}
+    @order.order_items.try(:each) do |item|
+      @cookies_hash[item.book_id.to_s] = item.quantity<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#get_books_in_order calls item.book_id 2 times                        <a href="order_controllers2.html#L97" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L98" class="js-smell-location">1</a>                  </span>  </li></ul>
+      @ids &lt;&lt; item.book_id<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      OrdersController#get_books_in_order calls item.book_id 2 times                        <a href="order_controllers2.html#L97" class="js-smell-location">0</a>                  <a href="order_controllers2.html#L98" class="js-smell-location">1</a>                  </span>  </li></ul>
+    end
+    @books = Book.where(id: @ids)
+    @subtotal = @order.total_price.to_f
+  end
+end
+</code>
+
+    </div>
+    <script src='../../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../../assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='../../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../../assets/javascripts/application.js'></script>
+  </body>
+</html>

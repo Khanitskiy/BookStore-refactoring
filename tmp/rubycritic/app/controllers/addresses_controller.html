@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="../../overview.html" class="project-nav-item">Overview</a>
+          <a href="../../code_index.html" class="project-nav-item">Code</a>
+          <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="file-header group rated">
+  <span class="rating rating-b circled-text circle">
+    B
+  </span>
+  <h2 class="file-name">AddressesController</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-06-01 18:48:30 +0300'>2016-06-01 18:48:30 +0300</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      49 complexity
+    </div>
+    <div class="file-stat">
+      9.8 complexity per method
+    </div>
+    <div class="file-stat">
+      5 churn
+    </div>
+    <div class="file-stat">
+      5 methods
+    </div>
+    <div class="file-stat">
+      21 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class AddressesController &lt; ApplicationController<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank">IrresponsibleModule</a>)      AddressesController has no descriptive comment          </span>  </li></ul>
+  authorize_resource
+  before_action :create_addresses_obj
+
+  def update<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank">TooManyStatements</a>)      AddressesController#update has approx 7 statements          </span>  </li></ul>
+    bool = params[:address][:and_shipping] == &#39;true&#39;<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      AddressesController#update calls params[:address] 2 times                        <a href="addresses_controller.html#L6" class="js-smell-location">0</a>                  <a href="addresses_controller.html#L7" class="js-smell-location">1</a>                  </span>  </li></ul>
+    type = params[:address][:type] == &quot;billing&quot; ? true : false<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      AddressesController#update calls params[:address] 2 times                        <a href="addresses_controller.html#L6" class="js-smell-location">0</a>                  <a href="addresses_controller.html#L7" class="js-smell-location">1</a>                  </span>  </li></ul>
+    bool ? adresses_update(type, true) : adresses_update(type, false)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Repeated-Conditional.md" target="_blank">RepeatedConditional</a>)      AddressesController tests bool at least 3 times                        <a href="addresses_controller.html#L8" class="js-smell-location">0</a>                  <a href="addresses_controller.html#L25" class="js-smell-location">1</a>                  <a href="addresses_controller.html#L26" class="js-smell-location">2</a>                  </span>  </li></ul>
+    errors_manage type
+    render &quot;users/settings.html.haml&quot;
+  end
+
+  private
+
+  def adresses_update(type, val)
+    if type<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md" target="_blank">ControlParameter</a>)      AddressesController#adresses_update is controlled by argument type          </span>  </li></ul>
+      @billing_address.update address_params(val) if val
+      @shipping_address.update address_params(!val)
+    else
+      @shipping_address.update address_params(false)
+    end
+  end
+
+  def errors_manage(bool)
+    @resource = bool ? @billing_address : @shipping_address<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md" target="_blank">ControlParameter</a>)      AddressesController#errors_manage is controlled by argument bool                        <a href="addresses_controller.html#L25" class="js-smell-location">0</a>                  <a href="addresses_controller.html#L26" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Repeated-Conditional.md" target="_blank">RepeatedConditional</a>)      AddressesController tests bool at least 3 times                        <a href="addresses_controller.html#L8" class="js-smell-location">0</a>                  <a href="addresses_controller.html#L25" class="js-smell-location">1</a>                  <a href="addresses_controller.html#L26" class="js-smell-location">2</a>                  </span>  </li></ul>
+    sym = bool ? :billing_form : :shipping_form<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md" target="_blank">ControlParameter</a>)      AddressesController#errors_manage is controlled by argument bool                        <a href="addresses_controller.html#L25" class="js-smell-location">0</a>                  <a href="addresses_controller.html#L26" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Repeated-Conditional.md" target="_blank">RepeatedConditional</a>)      AddressesController tests bool at least 3 times                        <a href="addresses_controller.html#L8" class="js-smell-location">0</a>                  <a href="addresses_controller.html#L25" class="js-smell-location">1</a>                  <a href="addresses_controller.html#L26" class="js-smell-location">2</a>                  </span>  </li></ul>
+    @resource.errors.messages[sym] = true
+  end
+
+  def billing_shipping_adresses(address)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Identical code found in 2 nodes                        <a href="addresses_controller.html#L30" class="js-smell-location">0</a>                  <a href="../forms/order_steps_form.html#L68" class="js-smell-location">1</a>                  </span>  </li></ul>
+    order.public_send(address) ||
+    user.public_send(address)  ||
+    Address.new(&quot;order_#{address.to_s}_id&quot;.to_sym =&gt; order.id)
+  end
+
+  def address_params(val)
+    par = params.require(:address).permit(:firstname, :lastname, :address,
+                                          :city, :country, :zipcode, :phone)
+    type = val ? &#39;billing&#39; : &#39;shipping&#39;<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md" target="_blank">ControlParameter</a>)      AddressesController#address_params is controlled by argument val          </span>  </li></ul>
+    par.merge(&quot;user_#{type}_address_id&quot; =&gt; current_user.id)
+  end
+end
+</code>
+
+    </div>
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

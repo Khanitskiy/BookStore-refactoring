@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="../../overview.html" class="project-nav-item">Overview</a>
+          <a href="../../code_index.html" class="project-nav-item">Code</a>
+          <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="file-header group rated">
+  <span class="rating rating-a circled-text circle">
+    A
+  </span>
+  <h2 class="file-name">Ability</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-06-01 18:48:30 +0300'>2016-06-01 18:48:30 +0300</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      23 complexity
+    </div>
+    <div class="file-stat">
+      23.0 complexity per method
+    </div>
+    <div class="file-stat">
+      5 churn
+    </div>
+    <div class="file-stat">
+      1 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class Ability<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank">IrresponsibleModule</a>)      Ability has no descriptive comment          </span>  </li></ul>
+  include CanCan::Ability
+
+  def initialize(user)
+    if user
+      # user ||= User.new # guest user (not logged in)
+      if user.admin?
+        can :access, :rails_admin # only allow admin users to access Rails Admin
+        can :dashboard
+        can :manage, :all
+      else
+        can :read, :all<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      Ability#initialize calls can :read, :all 2 times                        <a href="ability.html#L12" class="js-smell-location">0</a>                  <a href="ability.html#L21" class="js-smell-location">1</a>                  </span>  </li></ul>
+        cannot :read, Order
+        can :read, Order, user_id: user.id<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      Ability#initialize calls user.id 3 times                        <a href="ability.html#L14" class="js-smell-location">0</a>                  <a href="ability.html#L15" class="js-smell-location">1</a>                  <a href="ability.html#L18" class="js-smell-location">2</a>                  </span>  </li></ul>
+        can :manage, Order, user_id: user.id<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      Ability#initialize calls user.id 3 times                        <a href="ability.html#L14" class="js-smell-location">0</a>                  <a href="ability.html#L15" class="js-smell-location">1</a>                  <a href="ability.html#L18" class="js-smell-location">2</a>                  </span>  </li></ul>
+        can :manage, Rating
+        can :manage, User
+        can :update, Address, user_id: user.id<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      Ability#initialize calls user.id 3 times                        <a href="ability.html#L14" class="js-smell-location">0</a>                  <a href="ability.html#L15" class="js-smell-location">1</a>                  <a href="ability.html#L18" class="js-smell-location">2</a>                  </span>  </li></ul>
+      end
+    else
+      can :read, :all<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      Ability#initialize calls can :read, :all 2 times                        <a href="ability.html#L12" class="js-smell-location">0</a>                  <a href="ability.html#L21" class="js-smell-location">1</a>                  </span>  </li></ul>
+      can :manage, Order
+      cannot :show, Order
+      cannot :index, Order
+      #cannot :show, :index, Order
+      #can :read, Order, :user_id =&gt; user.id
+    end
+    # Define abilities for the passed in user here. For example:
+    #
+    #   user ||= User.new # guest user (not logged in)
+    #   if user.admin?
+    #     can :manage, :all
+    #   else
+    #     can :read, :all
+    #   end
+    #
+    # The first argument to `can` is the action you are giving the user
+    # permission to do.
+    # If you pass :manage it will apply to every action. Other common actions
+    # here are :read, :create, :update and :destroy.
+    #
+    # The second argument is the resource the user can perform the action on.
+    # If you pass :all it will apply to every resource. Otherwise pass a Ruby
+    # class of the resource.
+    #
+    # The third argument is an optional hash of conditions to further filter the
+    # objects.
+    # For example, here the user can only update published articles.
+    #
+    #   can :update, Article, :published =&gt; true
+    #
+    # See the wiki for details:
+    # https://github.com/ryanb/cancan/wiki/Defining-Abilities
+  end
+end
+</code>
+
+    </div>
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

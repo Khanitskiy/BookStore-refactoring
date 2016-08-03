@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="../../overview.html" class="project-nav-item">Overview</a>
+          <a href="../../code_index.html" class="project-nav-item">Code</a>
+          <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="file-header group rated">
+  <span class="rating rating-b circled-text circle">
+    B
+  </span>
+  <h2 class="file-name">ApplicationController</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-06-01 18:48:30 +0300'>2016-06-01 18:48:30 +0300</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      101 complexity
+    </div>
+    <div class="file-stat">
+      8.4 complexity per method
+    </div>
+    <div class="file-stat">
+      11 churn
+    </div>
+    <div class="file-stat">
+      12 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class ApplicationController &lt; ActionController::Base<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank">IrresponsibleModule</a>)      ApplicationController has no descriptive comment          </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Instance-Variables.md" target="_blank">TooManyInstanceVariables</a>)      ApplicationController has at least 8 instance variables          </span>  </li></ul>
+
+  include CookiesHandling
+  include SessionHandling
+  include ValueCalculation
+
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+
+  before_filter :load_in_progress_order, if: :current_user
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_locale
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to &#39;/&#39;, alert: exception.message
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || session[:omniauth_login_locale] || I18n.default_locale
+    session[:omniauth_login_locale] = I18n.locale
+  end
+
+  def create_addresses_obj
+    @billing_address = Address.find_or_create_by(user_billing_address_id: current_user.id)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationController#create_addresses_obj calls current_user.id 2 times                        <a href="application_controller.html#L25" class="js-smell-location">0</a>                  <a href="application_controller.html#L26" class="js-smell-location">1</a>                  </span>  </li></ul>
+    @shipping_address = Address.find_or_create_by(user_shipping_address_id: current_user.id)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationController#create_addresses_obj calls current_user.id 2 times                        <a href="application_controller.html#L25" class="js-smell-location">0</a>                  <a href="application_controller.html#L26" class="js-smell-location">1</a>                  </span>  </li></ul>
+  end
+
+  def default_url_options(options = {})<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank">UtilityFunction</a>)      ApplicationController#default_url_options doesn't depend on instance state (maybe move it to another class?)          </span>  </li></ul>
+    { locale: I18n.locale }.merge options
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:firstname, :lastname, :email, :password) }<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationController#configure_permitted_parameters calls u.permit(:firstname, :lastname, :email, :password) 2 times                        <a href="application_controller.html#L36" class="js-smell-location">0</a>                  <a href="application_controller.html#L37" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Uncommunicative-Variable-Name.md" target="_blank">UncommunicativeVariableName</a>)      ApplicationController#configure_permitted_parameters has the variable name 'u'                        <a href="application_controller.html#L36" class="js-smell-location">0</a>                  <a href="application_controller.html#L37" class="js-smell-location">1</a>                  </span>  </li></ul>
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:firstname, :lastname, :email, :password) }<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationController#configure_permitted_parameters calls u.permit(:firstname, :lastname, :email, :password) 2 times                        <a href="application_controller.html#L36" class="js-smell-location">0</a>                  <a href="application_controller.html#L37" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Uncommunicative-Variable-Name.md" target="_blank">UncommunicativeVariableName</a>)      ApplicationController#configure_permitted_parameters has the variable name 'u'                        <a href="application_controller.html#L36" class="js-smell-location">0</a>                  <a href="application_controller.html#L37" class="js-smell-location">1</a>                  </span>  </li></ul>
+  end
+
+  private
+
+  def load_in_progress_order
+    if current_user
+      @order = current_user.orders.where(state: &#39;in_progress&#39;).first
+      set_session(@order.book_count)
+    end
+  end
+
+  def after_sign_in_path_for(resource)
+    sign_in_url = new_user_session_url
+    new_facebook_user
+    if request.referer == sign_in_url<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationController#after_sign_in_path_for calls request.referer 2 times                        <a href="application_controller.html#L52" class="js-smell-location">0</a>                  <a href="application_controller.html#L55" class="js-smell-location">1</a>                  </span>  </li></ul>
+      super
+    else
+      stored_location_for(resource) || request.referer || root_path<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationController#after_sign_in_path_for calls request.referer 2 times                        <a href="application_controller.html#L52" class="js-smell-location">0</a>                  <a href="application_controller.html#L55" class="js-smell-location">1</a>                  </span>  </li></ul>
+    end
+  end
+
+  def new_facebook_user
+    unless current_user.id == 1
+      new_facebook_user?(current_user) ? after_auth(true) : after_auth(false)
+    end
+  end
+
+  def after_auth(bool)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank">TooManyStatements</a>)      ApplicationController#after_auth has approx 7 statements          </span>  </li></ul>
+    @cookies_book = cookies_json_parse(:books)
+    @cookies_count = cookies_json_parse(:book_count)
+    cookies_nil
+    bool ? after_sign_up : after_sign_in<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md" target="_blank">ControlParameter</a>)      ApplicationController#after_auth is controlled by argument bool          </span>  </li></ul>
+    OrderItem.update_items(@cookies_book, @order)
+    cookies_delete
+  end
+
+  def after_sign_up
+    id = current_user.id unless id
+    @order = Order.create_order(@cookies_count , total_price, id)
+  end
+
+  def after_sign_in
+    load_in_progress_order
+    set_session(@order.book_count + @cookies_count[&#39;book_count&#39;].to_i)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationController#after_sign_in calls @cookies_count['book_count'] 2 times                        <a href="application_controller.html#L81" class="js-smell-location">0</a>                  <a href="application_controller.html#L84" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationController#after_sign_in calls @cookies_count['book_count'].to_i 2 times                        <a href="application_controller.html#L81" class="js-smell-location">0</a>                  <a href="application_controller.html#L84" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationController#after_sign_in calls @order.book_count 2 times                        <a href="application_controller.html#L81" class="js-smell-location">0</a>                  <a href="application_controller.html#L84" class="js-smell-location">1</a>                  </span>  </li></ul>
+    @order.update(total_price: total_calc,
+                  order_total: total_calc(5.0),
+                  book_count:  @cookies_count[&#39;book_count&#39;].to_i + @order.book_count)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationController#after_sign_in calls @cookies_count['book_count'] 2 times                        <a href="application_controller.html#L81" class="js-smell-location">0</a>                  <a href="application_controller.html#L84" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationController#after_sign_in calls @cookies_count['book_count'].to_i 2 times                        <a href="application_controller.html#L81" class="js-smell-location">0</a>                  <a href="application_controller.html#L84" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      ApplicationController#after_sign_in calls @order.book_count 2 times                        <a href="application_controller.html#L81" class="js-smell-location">0</a>                  <a href="application_controller.html#L84" class="js-smell-location">1</a>                  </span>  </li></ul>
+  end
+
+  def get_books(bool = true)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Boolean-Parameter.md" target="_blank">BooleanParameter</a>)      ApplicationController#get_books has boolean parameter 'bool'          </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank">TooManyStatements</a>)      ApplicationController#get_books has approx 6 statements          </span>  </li></ul>
+    value = current_user &amp;&amp; bool
+    @obj = value ? @order.order_items : cookies_json_parse(:books)
+    @books = Book.where(id: parse_ids(@obj, value))
+    @subtotal = current_user &amp;&amp; bool ? @order.total_price : calc_subtotal(@books)
+  end
+
+  def new_facebook_user?(user)<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank">UtilityFunction</a>)      ApplicationController#new_facebook_user? doesn't depend on instance state (maybe move it to another class?)          </span>  </li></ul>
+    user.sign_in_count &lt; 2 &amp;&amp; user.provider == &#39;facebook&#39; ? true : false
+  end
+
+end
+</code>
+
+    </div>
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

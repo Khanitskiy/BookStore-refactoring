@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="../../../overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="../../../overview.html" class="project-nav-item">Overview</a>
+          <a href="../../../code_index.html" class="project-nav-item">Code</a>
+          <a href="../../../smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="file-header group rated">
+  <span class="rating rating-a circled-text circle">
+    A
+  </span>
+  <h2 class="file-name">Users::OmniauthCallbacksController</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-06-01 18:48:30 +0300'>2016-06-01 18:48:30 +0300</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      25 complexity
+    </div>
+    <div class="file-stat">
+      12.5 complexity per method
+    </div>
+    <div class="file-stat">
+      4 churn
+    </div>
+    <div class="file-stat">
+      2 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class Users::OmniauthCallbacksController &lt; Devise::OmniauthCallbacksController<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank">IrresponsibleModule</a>)      Users::OmniauthCallbacksController has no descriptive comment          </span>  </li></ul>
+  def facebook<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank">TooManyStatements</a>)      Users::OmniauthCallbacksController#facebook has approx 6 statements          </span>  </li></ul>
+    # You need to implement the method below in your model (e.g. app/models/user.rb)
+    @user = User.from_omniauth(request.env[&#39;omniauth.auth&#39;])<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      Users::OmniauthCallbacksController#facebook calls request.env 2 times                        <a href="omniauth_callbacks_controller.html#L4" class="js-smell-location">0</a>                  <a href="omniauth_callbacks_controller.html#L18" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      Users::OmniauthCallbacksController#facebook calls request.env['omniauth.auth'] 2 times                        <a href="omniauth_callbacks_controller.html#L4" class="js-smell-location">0</a>                  <a href="omniauth_callbacks_controller.html#L18" class="js-smell-location">1</a>                  </span>  </li></ul>
+    # byebug
+    if @user.persisted?
+      # byebug
+      # if  new_facebook_user?(@user)
+      # byebug
+      # after_sign_up(@user.id)
+      # end
+      # byebug
+      I18n.locale = session[:omniauth_login_locale] || I18n.default_locale
+      sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
+      set_flash_message(:notice, :success, kind: &#39;Facebook&#39;) if is_navigational_format?
+    else
+      # byebug
+      session[&#39;devise.facebook_data&#39;] = request.env[&#39;omniauth.auth&#39;]<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      Users::OmniauthCallbacksController#facebook calls request.env 2 times                        <a href="omniauth_callbacks_controller.html#L4" class="js-smell-location">0</a>                  <a href="omniauth_callbacks_controller.html#L18" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank">DuplicateMethodCall</a>)      Users::OmniauthCallbacksController#facebook calls request.env['omniauth.auth'] 2 times                        <a href="omniauth_callbacks_controller.html#L4" class="js-smell-location">0</a>                  <a href="omniauth_callbacks_controller.html#L18" class="js-smell-location">1</a>                  </span>  </li></ul>
+      redirect_to root_path
+    end
+  end
+
+  def failure
+    redirect_to root_path
+  end
+end
+</code>
+
+    </div>
+    <script src='../../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../../assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='../../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../../assets/javascripts/application.js'></script>
+  </body>
+</html>

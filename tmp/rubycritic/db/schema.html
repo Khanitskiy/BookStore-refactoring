@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="../overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="../overview.html" class="project-nav-item">Overview</a>
+          <a href="../code_index.html" class="project-nav-item">Code</a>
+          <a href="../smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="file-header group rated">
+  <span class="rating rating-c circled-text circle">
+    C
+  </span>
+  <h2 class="file-name">Schema</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-05-04 15:47:58 +0300'>2016-05-04 15:47:58 +0300</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      134 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      16 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      104 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code"># encoding: UTF-8
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you&#39;ll amass, the slower it&#39;ll run and the greater likelihood for issues).
+#
+# It&#39;s strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 20160427123550) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension &quot;plpgsql&quot;
+
+  create_table &quot;addresses&quot;, force: :cascade do |t|
+    t.string   &quot;firstname&quot;
+    t.string   &quot;lastname&quot;
+    t.string   &quot;address&quot;
+    t.string   &quot;zipcode&quot;
+    t.string   &quot;city&quot;
+    t.string   &quot;phone&quot;
+    t.string   &quot;country&quot;
+    t.datetime &quot;created_at&quot;,                null: false
+    t.datetime &quot;updated_at&quot;,                null: false
+    t.integer  &quot;user_billing_address_id&quot;
+    t.integer  &quot;user_shipping_address_id&quot;
+    t.integer  &quot;order_billing_address_id&quot;
+    t.integer  &quot;order_shipping_address_id&quot;
+  end
+
+  create_table &quot;authors&quot;, force: :cascade do |t|<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Similar code found in 2 nodes                        <a href="schema.html#L35" class="js-smell-location">0</a>                  <a href="schema.html#L98" class="js-smell-location">1</a>                  </span>  </li></ul>
+    t.string   &quot;firstname&quot;
+    t.string   &quot;lastname&quot;
+    t.text     &quot;biography&quot;
+    t.datetime &quot;created_at&quot;, null: false
+    t.datetime &quot;updated_at&quot;, null: false
+  end
+
+  create_table &quot;books&quot;, force: :cascade do |t|
+    t.string   &quot;title&quot;
+    t.text     &quot;description&quot;
+    t.decimal  &quot;price&quot;
+    t.integer  &quot;in_stock&quot;
+    t.decimal  &quot;rating&quot;
+    t.integer  &quot;author_id&quot;
+    t.integer  &quot;category_id&quot;
+    t.datetime &quot;created_at&quot;,    null: false
+    t.datetime &quot;updated_at&quot;,    null: false
+    t.string   &quot;image&quot;
+    t.integer  &quot;order_counter&quot;
+    t.boolean  &quot;best_seller&quot;
+  end
+
+  add_index &quot;books&quot;, [&quot;author_id&quot;], name: &quot;index_books_on_author_id&quot;, using: :btree
+  add_index &quot;books&quot;, [&quot;category_id&quot;], name: &quot;index_books_on_category_id&quot;, using: :btree
+
+  create_table &quot;categories&quot;, force: :cascade do |t|<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Similar code found in 2 nodes                        <a href="schema.html#L61" class="js-smell-location">0</a>                  <a href="schema.html#L67" class="js-smell-location">1</a>                  </span>  </li></ul>
+    t.string   &quot;title&quot;
+    t.datetime &quot;created_at&quot;, null: false
+    t.datetime &quot;updated_at&quot;, null: false
+  end
+
+  create_table &quot;countries&quot;, force: :cascade do |t|<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Similar code found in 2 nodes                        <a href="schema.html#L61" class="js-smell-location">0</a>                  <a href="schema.html#L67" class="js-smell-location">1</a>                  </span>  </li></ul>
+    t.string   &quot;name&quot;
+    t.datetime &quot;created_at&quot;, null: false
+    t.datetime &quot;updated_at&quot;, null: false
+  end
+
+  create_table &quot;credit_cards&quot;, force: :cascade do |t|
+    t.string   &quot;number&quot;
+    t.string   &quot;cvv&quot;
+    t.integer  &quot;expiration_month&quot;
+    t.integer  &quot;expiration_year&quot;
+    t.string   &quot;firstname&quot;
+    t.string   &quot;lastname&quot;
+    t.integer  &quot;user_id&quot;
+    t.datetime &quot;created_at&quot;,       null: false
+    t.datetime &quot;updated_at&quot;,       null: false
+  end
+
+  add_index &quot;credit_cards&quot;, [&quot;user_id&quot;], name: &quot;index_credit_cards_on_user_id&quot;, using: :btree
+
+  create_table &quot;cupons&quot;, force: :cascade do |t|
+    t.string   &quot;value&quot;
+    t.boolean  &quot;use&quot;,        default: false
+    t.integer  &quot;discount&quot;,   default: 5
+    t.integer  &quot;order_id&quot;
+    t.datetime &quot;created_at&quot;,                 null: false
+    t.datetime &quot;updated_at&quot;,                 null: false
+  end
+
+  add_index &quot;cupons&quot;, [&quot;order_id&quot;], name: &quot;index_cupons_on_order_id&quot;, using: :btree
+
+  create_table &quot;order_items&quot;, force: :cascade do |t|<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flay/" target="_blank">DuplicateCode</a>)      Similar code found in 2 nodes                        <a href="schema.html#L35" class="js-smell-location">0</a>                  <a href="schema.html#L98" class="js-smell-location">1</a>                  </span>  </li></ul>
+    t.integer  &quot;quantity&quot;
+    t.integer  &quot;book_id&quot;
+    t.integer  &quot;order_id&quot;
+    t.datetime &quot;created_at&quot;, null: false
+    t.datetime &quot;updated_at&quot;, null: false
+  end
+
+  add_index &quot;order_items&quot;, [&quot;book_id&quot;], name: &quot;index_order_items_on_book_id&quot;, using: :btree
+  add_index &quot;order_items&quot;, [&quot;order_id&quot;], name: &quot;index_order_items_on_order_id&quot;, using: :btree
+
+  create_table &quot;orders&quot;, force: :cascade do |t|
+    t.decimal  &quot;total_price&quot;
+    t.date     &quot;completed_date&quot;
+    t.string   &quot;state&quot;,          default: &quot;in_progress&quot;
+    t.integer  &quot;book_count&quot;
+    t.integer  &quot;step_number&quot;
+    t.integer  &quot;user_id&quot;
+    t.integer  &quot;credit_card_id&quot;
+    t.datetime &quot;created_at&quot;,                             null: false
+    t.datetime &quot;updated_at&quot;,                             null: false
+    t.decimal  &quot;delivery&quot;,       default: 5.0
+    t.decimal  &quot;order_total&quot;
+  end
+
+  add_index &quot;orders&quot;, [&quot;credit_card_id&quot;], name: &quot;index_orders_on_credit_card_id&quot;, using: :btree
+  add_index &quot;orders&quot;, [&quot;user_id&quot;], name: &quot;index_orders_on_user_id&quot;, using: :btree
+
+  create_table &quot;ratings&quot;, force: :cascade do |t|
+    t.string   &quot;title&quot;
+    t.string   &quot;text_review&quot;
+    t.integer  &quot;rating&quot;
+    t.integer  &quot;book_id&quot;
+    t.integer  &quot;user_id&quot;
+    t.datetime &quot;created_at&quot;,  null: false
+    t.datetime &quot;updated_at&quot;,  null: false
+  end
+
+  add_index &quot;ratings&quot;, [&quot;book_id&quot;], name: &quot;index_ratings_on_book_id&quot;, using: :btree
+  add_index &quot;ratings&quot;, [&quot;user_id&quot;], name: &quot;index_ratings_on_user_id&quot;, using: :btree
+
+  create_table &quot;users&quot;, force: :cascade do |t|<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="http://docs.seattlerb.org/flog/" target="_blank">HighComplexity</a>)      create_table#users has a flog score of 26          </span>  </li></ul>
+    t.string   &quot;email&quot;,                  default: &quot;&quot;, null: false
+    t.string   &quot;encrypted_password&quot;,     default: &quot;&quot;, null: false
+    t.string   &quot;firstname&quot;,              default: &quot;&quot;, null: false
+    t.string   &quot;lastname&quot;,               default: &quot;&quot;, null: false
+    t.string   &quot;reset_password_token&quot;
+    t.datetime &quot;reset_password_sent_at&quot;
+    t.datetime &quot;remember_created_at&quot;
+    t.integer  &quot;sign_in_count&quot;,          default: 0,  null: false
+    t.datetime &quot;current_sign_in_at&quot;
+    t.datetime &quot;last_sign_in_at&quot;
+    t.inet     &quot;current_sign_in_ip&quot;
+    t.inet     &quot;last_sign_in_ip&quot;
+    t.datetime &quot;created_at&quot;,                          null: false
+    t.datetime &quot;updated_at&quot;,                          null: false
+    t.boolean  &quot;admin&quot;
+    t.string   &quot;provider&quot;
+    t.string   &quot;uid&quot;
+    t.string   &quot;image&quot;
+    t.string   &quot;facebook_image&quot;
+  end
+
+  add_index &quot;users&quot;, [&quot;email&quot;], name: &quot;index_users_on_email&quot;, unique: true, using: :btree
+  add_index &quot;users&quot;, [&quot;reset_password_token&quot;], name: &quot;index_users_on_reset_password_token&quot;, unique: true, using: :btree
+
+end
+</code>
+
+    </div>
+    <script src='../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../assets/javascripts/application.js'></script>
+  </body>
+</html>

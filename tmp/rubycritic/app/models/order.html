@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="../../overview.html" class="project-nav-item">Overview</a>
+          <a href="../../code_index.html" class="project-nav-item">Code</a>
+          <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="file-header group rated">
+  <span class="rating rating-a circled-text circle">
+    A
+  </span>
+  <h2 class="file-name">Order</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-06-01 18:48:30 +0300'>2016-06-01 18:48:30 +0300</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      17 complexity
+    </div>
+    <div class="file-stat">
+      4.3 complexity per method
+    </div>
+    <div class="file-stat">
+      8 churn
+    </div>
+    <div class="file-stat">
+      4 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class Order &lt; ActiveRecord::Base<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">      (<a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank">IrresponsibleModule</a>)      Order has no descriptive comment          </span>  </li></ul>
+  include AASM
+  validates :total_price, :state, presence: true
+  before_validation :set_completed_date
+
+  has_many :order_items
+  belongs_to :user
+  belongs_to :credit_card
+
+  has_one :billing_address, class_name: &#39;Address&#39;, foreign_key: &#39;order_billing_address_id&#39;
+  has_one :shipping_address, class_name: &#39;Address&#39;, foreign_key: &#39;order_shipping_address_id&#39;
+  has_one :cupon
+
+  aasm column: &#39;state&#39; do
+    state :in_progress
+    state :in_queue
+    state :in_delivery
+    state :delivered
+    state :canceled
+
+    event :to_in_queue do
+      transitions from: :in_progress, to: :in_queue
+    end
+  end
+
+  def state_enum
+    %w(in_progress
+       processing
+       shipping
+       completed
+       canceled)
+  end
+
+  def delivery_enum
+    [[&#39;UPS Ground&#39;, &#39;5.0&#39;], [&#39;UPS One Day&#39;, &#39;10.0&#39;], [&#39;UPS Two Days&#39;, &#39;20.0&#39;]]
+  end
+
+  scope :last_order_queue, -&gt; (current_user) { 
+    where(user_id: current_user.id, state: &#39;in_queue&#39;).last 
+  }
+
+  scope :in_queue, -&gt; (current_user) { 
+    where(user_id: current_user.id, state: &#39;in_queue&#39;).all 
+  }
+
+  scope :in_delivery, -&gt; (current_user) {
+    where(user_id: current_user.id, state: &#39;in_delivery&#39;).all
+  }
+
+  scope :delivered, -&gt; (current_user) {
+    where(user_id: current_user.id, state: &#39;delivered&#39;).all
+  }
+
+  def self.create_order(cookies, total_price, user_id)
+    order = Order.create(user_id: user_id,
+                          total_price: total_price,
+                          order_total: total_price + 5.0,
+                          book_count: cookies[&#39;book_count&#39;].to_i)
+    order.id
+  end
+
+  #def self.in_queue(current_user)
+    #where(user_id: current_user.id, state: &#39;in_queue&#39;).all
+  #end
+
+  #def self.in_delivery(current_user)
+    #where(user_id: current_user.id, state: &#39;in_delivery&#39;).all
+  #end
+
+  #def self.delivered(current_user)
+    #where(user_id: current_user.id, state: &#39;delivered&#39;).all
+  #end
+
+  #def update_order(order, session, price)
+    #order.book_count = session
+    #order.total_price = order.total_price.to_f + price
+    #order.completed_date = 3.days.from_now
+    #order.order_total =  order.delivery.to_f + order.total_price.to_f
+    #order.save!
+  #end
+
+  #def self.last_order_queue(current_user)
+    # byebug
+    # where(&quot;user_id = #{current_user.id}&quot;).order(id: :desc).first
+    #where(user_id: current_user.id, state: &#39;in_queue&#39;).last
+  #end
+
+  #def self.in_queue(current_user)
+    #where(user_id: current_user.id, state: &#39;in_queue&#39;).all
+  #end
+
+  #def self.in_delivery(current_user)
+    #where(user_id: current_user.id, state: &#39;in_delivery&#39;).all
+  #end
+
+  #def self.delivered(current_user)
+    #where(user_id: current_user.id, state: &#39;delivered&#39;).all
+  #end
+
+  # def delivery
+  # byebug
+  # if self.delivery.to_i == 5.0
+  # &#39;UPS Ground&#39;
+  # elsif self.delivery.to_i == 10.0
+  # &#39;UPS One Day&#39;
+  # elsif self.delivery.to_i == 20.0
+  # &#39;UPS Two Days&#39;
+  # end
+  # end
+
+  private
+
+  # def completed_date
+  # 3.days.from_now
+  # end
+
+  def set_completed_date
+    self.completed_date = 3.days.from_now
+  end
+
+  # def now_date
+  #  Time.now().strftime(&quot;%Y-%m-%d&quot;)
+  # end
+
+  # def set_completed_date(day)
+  #  self.completed_date = day == &quot;infinity&quot; ? &quot;infinity&quot; : day.days.from_now
+  # end
+end
+</code>
+
+    </div>
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

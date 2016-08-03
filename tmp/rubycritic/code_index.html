@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="overview.html" class="project-nav-item">Overview</a>
+          <a href="code_index.html" class="project-nav-item">Code</a>
+          <a href="smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <table id="js-index-table" class="index-table sortable-table">
+<thead>
+  <tr>
+    <th>Name</th>
+    <th class="numeric-cell" title="Number of times a file has changed">Churn</th>
+    <th class="numeric-cell" title="Overall amount of code in a file">Complexity</th>
+    <th class="numeric-cell" title="Amount of code that is similar to other code">Duplication</th>
+    <th class="numeric-cell">Smells</th>
+    
+      <th class="centered-cell">Rating</th>
+    
+  </tr>
+</thead>
+<tbody>
+  
+    <tr>
+      <td>
+        <a href="refactoring_lists.html">RefactoringLists</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/environment.html">Environment</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/routes.html">Routes</a>
+      </td>
+      <td class="numeric-cell">16</td>
+      <td class="numeric-cell">27</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/boot.html">Boot</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/application.html">Bookstore::Application</a>
+      </td>
+      <td class="numeric-cell">5</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/environments/test.html">Test</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/environments/development.html">Development</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/environments/production.html">Production</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/initializers/session_store.html">SessionStore</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/initializers/mime_types.html">MimeTypes</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/initializers/backtrace_silencers.html">BacktraceSilencers</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/initializers/filter_parameter_logging.html">FilterParameterLogging</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/initializers/inflections.html">Inflections</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/initializers/devise.html">Devise</a>
+      </td>
+      <td class="numeric-cell">13</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/initializers/rails_admin.html">RailsAdmin</a>
+      </td>
+      <td class="numeric-cell">6</td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/initializers/cookies_serializer.html">CookiesSerializer</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/initializers/assets.html">Assets</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="config/initializers/wrap_parameters.html">WrapParameters</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/controllers/ratings_controller_spec.html">RatingsControllerSpec</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/controllers/orders_items_controller_spec.html">OrdersItemsControllerSpec</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/controllers/addresses_controller_spec.html">AddressesControllerSpec</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/controllers/orders_controller_spec.html">OrdersControllerSpec</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/controllers/order_steps_controller_spec.html">OrderStepsControllerSpec</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/controllers/books_controller_spec.html">BooksControllerSpec</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">10</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/controllers/categories_controller_spec.html">CategoriesControllerSpec</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/controllers/users_controller_spec.html">UsersControllerSpec</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/rails_helper.html">RailsHelper</a>
+      </td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/features/search_feature_spec.html">SearchFeatureSpec</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">20</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/helpers/orders_helper_spec.html">OrdersHelperSpec</a>
+      </td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/helpers/users_helper_spec.html">UsersHelperSpec</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/helpers/categories_helper_spec.html">CategoriesHelperSpec</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/helpers/addresses_helper_spec.html">AddressesHelperSpec</a>
+      </td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/helpers/ratings_helper_spec.html">RatingsHelperSpec</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/helpers/order_steps_helper_spec.html">OrderStepsHelperSpec</a>
+      </td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/helpers/orders_items_helper_spec.html">OrdersItemsHelperSpec</a>
+      </td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/helpers/books_helper_spec.html">BooksHelperSpec</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/spec_helper.html">SpecHelper</a>
+      </td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/models/country_spec.html">CountrySpec</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/models/rating_spec.html">RatingSpec</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">22</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/models/cupon_spec.html">CuponSpec</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">17</td>
+      <td class="numeric-cell">17</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/models/order_spec.html">OrderSpec</a>
+      </td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">105</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-b circled-text circle">B</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/models/user_spec.html">UserSpec</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">14</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/models/category_spec.html">CategorySpec</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">35</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/models/credit_card_spec.html">CreditCardSpec</a>
+      </td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/models/book_spec.html">BookSpec</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">65</td>
+      <td class="numeric-cell">17</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-b circled-text circle">B</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/models/address_spec.html">AddressSpec</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/models/order_item_spec.html">OrderItemSpec</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">159</td>
+      <td class="numeric-cell">84</td>
+      <td class="numeric-cell">2</td>
+      
+        <td class="centered-cell"><span class="rating-d circled-text circle">D</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/models/author_spec.html">AuthorSpec</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/factories/orders.html">Orders</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/factories/countries.html">Countries</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/factories/credit_cards.html">CreditCards</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">19</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/factories/cupons.html">Cupons</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/factories/books.html">Books</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">13</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/factories/categories.html">Categories</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/factories/authors.html">Authors</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">7</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/factories/users.html">Users</a>
+      </td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">12</td>
+      <td class="numeric-cell">24</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/factories/customers.html">Customers</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">12</td>
+      <td class="numeric-cell">24</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/factories/ratings.html">Ratings</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">14</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/factories/order_items.html">OrderItems</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/factories/addresses.html">Addresses</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">20</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/views/books/shop.html.erb_spec.html">Shop.html.erbSpec</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="spec/views/books/home.html.erb_spec.html">Home.html.erbSpec</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160229130520_add_omniauth_to_users.html">AddOmniauthToUsers</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160220131228_create_countries.html">CreateCountries</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">3</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160220131221_create_addresses.html">CreateAddresses</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">11</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">4</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160427123550_change_integer_type_for_zipcode.html">ChangeIntegerTypeForZipcode</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">5</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">3</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160220115101_create_books.html">CreateBooks</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">11</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">4</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160220115140_create_ratings.html">CreateRatings</a>
+      </td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">8</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">4</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160301094923_add_facebook_image_to_user.html">AddFacebookImageToUser</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160314104155_add_billing_address_for_id_and_shipping_address_for_id_to_adresses.html">AddBillingAddressForIdAndShippingAddressForIdToAdresses</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160406065014_add_order_total_from_orders.html">AddOrderTotalFromOrders</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160229152315_add_image_to_books.html">AddImageToBooks</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160226105754_add_devise_to_users.html">AddDeviseToUsers</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">19</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">4</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160425123503_create_cupons.html">CreateCupons</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">7</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">4</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160302131617_add_part_to_books.html">AddPartToBooks</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160406042334_add_delivery_from_orders.html">AddDeliveryFromOrders</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160220131238_create_credit_cards.html">CreateCreditCards</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">11</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">4</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160220131137_create_orders.html">CreateOrders</a>
+      </td>
+      <td class="numeric-cell">5</td>
+      <td class="numeric-cell">11</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">4</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160220131202_create_order_items.html">CreateOrderItems</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">6</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">3</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160220115125_create_categories.html">CreateCategories</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">3</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160220093423_create_authors.html">CreateAuthors</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">6</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">3</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160414132043_change_state_type_for_orders.html">ChangeStateTypeForOrders</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">5</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">3</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/migrate/20160226111028_add_admin_to_users.html">AddAdminToUsers</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/seeds.html">Seeds</a>
+      </td>
+      <td class="numeric-cell">7</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">34</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="db/schema.html">Schema</a>
+      </td>
+      <td class="numeric-cell">16</td>
+      <td class="numeric-cell">134</td>
+      <td class="numeric-cell">104</td>
+      <td class="numeric-cell">3</td>
+      
+        <td class="centered-cell"><span class="rating-c circled-text circle">C</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/categories_controller.html">CategoriesController</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">18</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">2</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/books_controller.html">BooksController</a>
+      </td>
+      <td class="numeric-cell">11</td>
+      <td class="numeric-cell">17</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/ratings_controller.html">RatingsController</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">10</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/addresses_controller.html">AddressesController</a>
+      </td>
+      <td class="numeric-cell">5</td>
+      <td class="numeric-cell">49</td>
+      <td class="numeric-cell">21</td>
+      <td class="numeric-cell">8</td>
+      
+        <td class="centered-cell"><span class="rating-b circled-text circle">B</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/concerns/session_handling.html">SessionHandling</a>
+      </td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">19</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">2</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/concerns/value_calculation.html">ValueCalculation</a>
+      </td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">35</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">4</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/concerns/cookies_handling.html">CookiesHandling</a>
+      </td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">21</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">2</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/users_controller.html">UsersController</a>
+      </td>
+      <td class="numeric-cell">7</td>
+      <td class="numeric-cell">33</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">2</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/order_items_controller.html">OrderItemsController</a>
+      </td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">87</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">3</td>
+      
+        <td class="centered-cell"><span class="rating-b circled-text circle">B</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/order_steps_controller.html">OrderStepsController</a>
+      </td>
+      <td class="numeric-cell">6</td>
+      <td class="numeric-cell">68</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">8</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/orders_controller.html">OrdersController</a>
+      </td>
+      <td class="numeric-cell">6</td>
+      <td class="numeric-cell">60</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">2</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/users/omniauth_callbacks_controller.html">Users::OmniauthCallbacksController</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">25</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">4</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/users/registrations_controller.html">Users::RegistrationsController</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/users/unlocks_controller.html">Users::UnlocksController</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/users/passwords_controller.html">Users::PasswordsController</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/users/sessions_controller.html">Users::SessionsController</a>
+      </td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/users/confirmations_controller.html">Users::ConfirmationsController</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/controllers/application_controller.html">ApplicationController</a>
+      </td>
+      <td class="numeric-cell">11</td>
+      <td class="numeric-cell">101</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">15</td>
+      
+        <td class="centered-cell"><span class="rating-b circled-text circle">B</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/helpers/addresses_helper.html">AddressesHelper</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/helpers/orders_items_helper.html">OrdersItemsHelper</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/helpers/books_helper.html">BooksHelper</a>
+      </td>
+      <td class="numeric-cell">5</td>
+      <td class="numeric-cell">7</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">2</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/helpers/order_steps_helper.html">OrderStepsHelper</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">64</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">19</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/helpers/categories_helper.html">CategoriesHelper</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/helpers/ratings_helper.html">RatingsHelper</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/helpers/orders_helper.html">OrdersHelper</a>
+      </td>
+      <td class="numeric-cell">1</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/helpers/application_helper.html">ApplicationHelper</a>
+      </td>
+      <td class="numeric-cell">10</td>
+      <td class="numeric-cell">102</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">27</td>
+      
+        <td class="centered-cell"><span class="rating-b circled-text circle">B</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/helpers/users_helper.html">UsersHelper</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">40</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">3</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/services/shopcart_update.html">ShopcartUpdate</a>
+      </td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">40</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">6</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/services/order_update.html">OrderUpdate</a>
+      </td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">17</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">2</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/models/user.html">User</a>
+      </td>
+      <td class="numeric-cell">13</td>
+      <td class="numeric-cell">19</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">3</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/models/order_item.html">OrderItem</a>
+      </td>
+      <td class="numeric-cell">5</td>
+      <td class="numeric-cell">26</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">2</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/models/order.html">Order</a>
+      </td>
+      <td class="numeric-cell">8</td>
+      <td class="numeric-cell">17</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">1</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/models/credit_card.html">CreditCard</a>
+      </td>
+      <td class="numeric-cell">5</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/models/book.html">Book</a>
+      </td>
+      <td class="numeric-cell">9</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/models/cupon.html">Cupon</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/models/address.html">Address</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/models/author.html">Author</a>
+      </td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/models/country.html">Country</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/models/rating.html">Rating</a>
+      </td>
+      <td class="numeric-cell">5</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/models/category.html">Category</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/models/ability.html">Ability</a>
+      </td>
+      <td class="numeric-cell">5</td>
+      <td class="numeric-cell">23</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">3</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/validators/rating_score.html">RatingScore</a>
+      </td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">13</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">4</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/uploaders/book_img_uploader.html">BookImgUploader</a>
+      </td>
+      <td class="numeric-cell">6</td>
+      <td class="numeric-cell">5</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/uploaders/facebook_avatar_uploader.html">FacebookAvatarUploader</a>
+      </td>
+      <td class="numeric-cell">2</td>
+      <td class="numeric-cell">3</td>
+      <td class="numeric-cell">0</td>
+      <td class="numeric-cell">0</td>
+      
+        <td class="centered-cell"><span class="rating-a circled-text circle">A</span></td>
+      
+    </tr>
+  
+    <tr>
+      <td>
+        <a href="app/forms/order_steps_form.html">OrderStepsForm</a>
+      </td>
+      <td class="numeric-cell">4</td>
+      <td class="numeric-cell">199</td>
+      <td class="numeric-cell">53</td>
+      <td class="numeric-cell">17</td>
+      
+        <td class="centered-cell"><span class="rating-d circled-text circle">D</span></td>
+      
+    </tr>
+  
+</tbody>
+</table>
+
+    </div>
+    <script src='assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='assets/javascripts/application.js'></script>
+  </body>
+</html>
